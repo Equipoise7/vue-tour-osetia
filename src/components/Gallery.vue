@@ -18,7 +18,7 @@ const images = [
     category: 'mountains',
     title: 'Цейское ущелье',
     description: 'Величественные горные пейзажи',
-    image: 'https://picsum.photos/800/600?random=1',
+    image: '/vue-tour-osetia/images/ceiskoe.jpg',
     color: '#4299e1'
   },
   {
@@ -26,7 +26,7 @@ const images = [
     category: 'gorges',
     title: 'Кармадонское ущелье',
     description: 'Живописные виды и водопады',
-    image: 'https://picsum.photos/800/600?random=2',
+    image: '/vue-tour-osetia/images/karmadon.jpeg',
     color: '#48bb78'
   },
   {
@@ -34,7 +34,7 @@ const images = [
     category: 'mountains',
     title: 'Дигорское ущелье',
     description: 'Древние башни и природа',
-    image: 'https://picsum.photos/800/600?random=3',
+    image: '/vue-tour-osetia/images/digorya.jpg',
     color: '#ed8936'
   },
   {
@@ -42,7 +42,7 @@ const images = [
     category: 'winter',
     title: 'Зимний Цей',
     description: 'Горнолыжный курорт',
-    image: 'https://picsum.photos/800/600?random=4',
+    image: '/vue-tour-osetia/images/ceiskoe.jpg',
     color: '#667eea'
   },
   {
@@ -50,7 +50,7 @@ const images = [
     category: 'culture',
     title: 'Даргавс - Город мертвых',
     description: 'Древний некрополь',
-    image: 'https://picsum.photos/800/600?random=5',
+    image: '/vue-tour-osetia/images/hero3.jpg',
     color: '#f687b3'
   },
   {
@@ -58,7 +58,7 @@ const images = [
     category: 'gorges',
     title: 'Куртатинское ущелье',
     description: 'Скальные крепости',
-    image: 'https://picsum.photos/800/600?random=6',
+    image: '/vue-tour-osetia/images/karmadon.jpeg',
     color: '#38b2ac'
   },
   {
@@ -66,7 +66,7 @@ const images = [
     category: 'mountains',
     title: 'Казбек',
     description: 'Снежные вершины',
-    image: 'https://picsum.photos/800/600?random=7',
+    image: '/vue-tour-osetia/images/hero1.jpg',
     color: '#4299e1'
   },
   {
@@ -74,7 +74,7 @@ const images = [
     category: 'winter',
     title: 'Снежные пейзажи',
     description: 'Зимняя сказка в горах',
-    image: 'https://picsum.photos/800/600?random=8',
+    image: '/vue-tour-osetia/images/hero2.jpg',
     color: '#9f7aea'
   }
 ]

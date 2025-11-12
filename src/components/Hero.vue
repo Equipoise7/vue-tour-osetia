@@ -6,19 +6,19 @@ const slides = [
   {
     title: 'Горы Северной Осетии',
     subtitle: 'Откройте для себя величие Кавказских гор',
-    image: 'https://picsum.photos/1920/1080?mountain',
+    image: '/vue-tour-osetia/images/hero1.jpg',
     gradient: 'linear-gradient(135deg, rgba(44, 82, 130, 0.7) 0%, rgba(66, 153, 225, 0.6) 100%)'
   },
   {
     title: 'Комфортные перевозки',
     subtitle: 'Toyota Alphard для вашего комфорта',
-    image: 'https://picsum.photos/1920/1080?nature',
+    image: '/vue-tour-osetia/images/hero2.jpg',
     gradient: 'linear-gradient(135deg, rgba(72, 187, 120, 0.7) 0%, rgba(56, 161, 105, 0.6) 100%)'
   },
   {
     title: 'Профессиональные гиды',
     subtitle: 'Узнайте историю и культуру Осетии',
-    image: 'https://picsum.photos/1920/1080?landscape',
+    image: '/vue-tour-osetia/images/hero3.jpg',
     gradient: 'linear-gradient(135deg, rgba(237, 137, 54, 0.7) 0%, rgba(221, 107, 32, 0.6) 100%)'
   }
 ]

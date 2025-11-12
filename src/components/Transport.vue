@@ -43,9 +43,8 @@ const features = [
 
       <div class="transport-content">
         <div class="transport-image">
-          <div class="car-placeholder">
-            <div class="car-icon">🚙</div>
-            <div class="car-name">Toyota Alphard</div>
+          <img src="/vue-tour-osetia/images/alphard.jpg" alt="Toyota Alphard" class="car-photo">
+          <div class="car-overlay">
             <div class="car-badge">Premium</div>
           </div>
         </div>
@@ -118,55 +117,46 @@ const features = [
 
 .transport-image {
   position: relative;
-}
-
-.car-placeholder {
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
   border-radius: 30px;
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  box-shadow: 0 20px 60px rgba(44, 82, 130, 0.3);
-  position: relative;
   overflow: hidden;
+  box-shadow: 0 20px 60px rgba(44, 82, 130, 0.3);
+  transition: all 0.4s ease;
 }
 
-.car-placeholder::before {
-  content: '';
+.transport-image:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(44, 82, 130, 0.4);
+}
+
+.car-photo {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.car-overlay {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-  animation: shine 3s infinite;
-}
-
-.car-icon {
-  font-size: 8rem;
-  margin-bottom: 1.5rem;
-  animation: float 3s ease-in-out infinite;
-}
-
-.car-name {
-  font-size: 2rem;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 1rem;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.2) 0%, rgba(66, 153, 225, 0.1) 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 2rem;
 }
 
 .car-badge {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  color: white;
-  padding: 0.5rem 1.5rem;
+  color: #2c5282;
+  padding: 0.75rem 1.5rem;
   border-radius: 50px;
   font-weight: 700;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .transport-info {
@@ -251,24 +241,6 @@ const features = [
   box-shadow: 0 6px 30px rgba(66, 153, 225, 0.5);
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
-}
-
 @media (max-width: 968px) {
   .transport-content {
     grid-template-columns: 1fr;
@@ -279,12 +251,8 @@ const features = [
     grid-template-columns: 1fr;
   }
 
-  .car-placeholder {
-    min-height: 350px;
-  }
-
-  .car-icon {
-    font-size: 6rem;
+  .car-photo {
+    height: 350px;
   }
 }
 

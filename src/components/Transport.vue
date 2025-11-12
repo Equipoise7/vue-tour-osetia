@@ -45,8 +45,8 @@ const features = [
         <div class="transport-image">
           <img src="/images/alphard.jpg" alt="Toyota Alphard" class="car-photo">
           <div class="car-overlay">
-            <div class="car-badge">Premium</div>
             <div class="car-label">Toyota Alphard</div>
+            <div class="car-badge">Premium</div>
           </div>
         </div>
 
@@ -154,7 +154,7 @@ const features = [
   background: linear-gradient(135deg, rgba(44, 82, 130, 0.15) 0%, rgba(66, 153, 225, 0.08) 100%);
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 2rem;
   transition: all 0.3s ease;
@@ -174,6 +174,7 @@ const features = [
   font-size: 1.1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   animation: shimmer 3s ease-in-out infinite;
+  align-self: flex-end;
 }
 
 @keyframes shimmer {
@@ -192,7 +193,6 @@ const features = [
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  align-self: flex-start;
 }
 
 .transport-info {

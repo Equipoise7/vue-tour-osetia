@@ -18,7 +18,7 @@ const images = [
     category: 'mountains',
     title: 'Цейское ущелье',
     description: 'Величественные горные пейзажи',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=1',
     color: '#4299e1'
   },
   {
@@ -26,7 +26,7 @@ const images = [
     category: 'gorges',
     title: 'Кармадонское ущелье',
     description: 'Живописные виды и водопады',
-    image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=2',
     color: '#48bb78'
   },
   {
@@ -34,7 +34,7 @@ const images = [
     category: 'mountains',
     title: 'Дигорское ущелье',
     description: 'Древние башни и природа',
-    image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=3',
     color: '#ed8936'
   },
   {
@@ -42,7 +42,7 @@ const images = [
     category: 'winter',
     title: 'Зимний Цей',
     description: 'Горнолыжный курорт',
-    image: 'https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=4',
     color: '#667eea'
   },
   {
@@ -50,7 +50,7 @@ const images = [
     category: 'culture',
     title: 'Даргавс - Город мертвых',
     description: 'Древний некрополь',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=5',
     color: '#f687b3'
   },
   {
@@ -58,7 +58,7 @@ const images = [
     category: 'gorges',
     title: 'Куртатинское ущелье',
     description: 'Скальные крепости',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=6',
     color: '#38b2ac'
   },
   {
@@ -66,7 +66,7 @@ const images = [
     category: 'mountains',
     title: 'Казбек',
     description: 'Снежные вершины',
-    image: 'https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=7',
     color: '#4299e1'
   },
   {
@@ -74,7 +74,7 @@ const images = [
     category: 'winter',
     title: 'Снежные пейзажи',
     description: 'Зимняя сказка в горах',
-    image: 'https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=800&q=80',
+    image: 'https://picsum.photos/800/600?random=8',
     color: '#9f7aea'
   }
 ]

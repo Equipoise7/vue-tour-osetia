@@ -43,7 +43,7 @@ const features = [
 
       <div class="transport-content">
         <div class="transport-image">
-          <img src="/vue-tour-osetia/images/alphard.jpg" alt="Toyota Alphard" class="car-photo">
+          <img src="/images/alphard.jpg" alt="Toyota Alphard" class="car-photo">
           <div class="car-overlay">
             <div class="car-badge">Premium</div>
           </div>

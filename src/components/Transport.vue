@@ -46,6 +46,7 @@ const features = [
           <img src="/images/alphard.jpg" alt="Toyota Alphard" class="car-photo">
           <div class="car-overlay">
             <div class="car-badge">Premium</div>
+            <div class="car-label">Toyota Alphard</div>
           </div>
         </div>
 
@@ -97,7 +98,7 @@ const features = [
   font-weight: 800;
   color: #2c5282;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.7) 0%, rgba(66, 153, 225, 0.7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -121,11 +122,20 @@ const features = [
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(44, 82, 130, 0.3);
   transition: all 0.4s ease;
+  animation: floatCar 4s ease-in-out infinite;
 }
 
 .transport-image:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(44, 82, 130, 0.4);
+  box-shadow: 0 30px 80px rgba(44, 82, 130, 0.5);
+}
+
+@keyframes floatCar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .car-photo {
@@ -141,11 +151,17 @@ const features = [
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(44, 82, 130, 0.2) 0%, rgba(66, 153, 225, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.15) 0%, rgba(66, 153, 225, 0.08) 100%);
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
   padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.transport-image:hover .car-overlay {
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.25) 0%, rgba(66, 153, 225, 0.15) 100%);
 }
 
 .car-badge {
@@ -157,6 +173,26 @@ const features = [
   font-weight: 700;
   font-size: 1.1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(66, 153, 225, 0.4), 0 0 20px rgba(66, 153, 225, 0.3);
+  }
+}
+
+.car-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  align-self: flex-start;
 }
 
 .transport-info {
@@ -188,14 +224,18 @@ const features = [
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  background: white;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
+  border: 1px solid rgba(66, 153, 225, 0.1);
   transition: all 0.3s ease;
 }
 
 .feature-item:hover {
   transform: translateX(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 20px rgba(66, 153, 225, 0.3);
+  border-color: rgba(66, 153, 225, 0.3);
 }
 
 .feature-icon {

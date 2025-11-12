@@ -184,7 +184,7 @@ const closeImage = () => {
   font-weight: 800;
   color: #2c5282;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.7) 0%, rgba(66, 153, 225, 0.7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -220,7 +220,7 @@ const closeImage = () => {
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.85) 0%, rgba(66, 153, 225, 0.85) 100%);
   color: white;
   border-color: transparent;
 }
@@ -253,13 +253,13 @@ const closeImage = () => {
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   color: white;
   transition: all 0.4s ease;
 }
 
 .gallery-item:hover .gallery-overlay {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .gallery-title {

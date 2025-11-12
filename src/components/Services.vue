@@ -89,7 +89,7 @@ const services = [
   font-weight: 800;
   color: #2c5282;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+  background: linear-gradient(135deg, rgba(44, 82, 130, 0.7) 0%, rgba(66, 153, 225, 0.7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -107,9 +107,11 @@ const services = [
 }
 
 .service-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
   padding: 2.5rem;
   border-radius: 20px;
+  border: 1px solid rgba(66, 153, 225, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease;
   position: relative;
@@ -123,14 +125,16 @@ const services = [
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #2c5282 0%, #4299e1 100%);
+  background: linear-gradient(90deg, rgba(44, 82, 130, 0.6) 0%, rgba(66, 153, 225, 0.6) 100%);
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 12px 40px rgba(44, 82, 130, 0.2);
+  border-color: rgba(66, 153, 225, 0.3);
 }
 
 .service-card:hover::before {

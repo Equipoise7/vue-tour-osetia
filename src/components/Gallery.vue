@@ -126,7 +126,7 @@ const closeImage = () => {
           class="gallery-item"
           @click="openImage(image)"
           :style="{ 
-            backgroundImage: `linear-gradient(135deg, ${image.color}88 0%, ${image.color}66 100%), url(${image.image})`,
+            backgroundImage: `url(${image.image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }"
@@ -148,7 +148,7 @@ const closeImage = () => {
           <div 
             class="modal-image"
             :style="{ 
-              backgroundImage: `linear-gradient(135deg, ${selectedImage.color}88 0%, ${selectedImage.color}66 100%), url(${selectedImage.image})`,
+              backgroundImage: `url(${selectedImage.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }"

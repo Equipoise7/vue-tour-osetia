@@ -15,66 +15,58 @@ const categories = [
 const images = [
   {
     id: 1,
-    category: 'mountains',
-    title: 'Цейское ущелье',
-    description: 'Величественные горные пейзажи',
-    image: '/vue-tour-osetia/images/ceiskoe.jpg',
+    category: 'gorges',
+    title: 'Дарьяльское ущелье',
+    description: 'Ворота Кавказа на Военно-Грузинской дороге',
+    image: '/vue-tour-osetia/images/fiagdon.jpg',
     color: '#4299e1'
   },
   {
     id: 2,
     category: 'gorges',
-    title: 'Кармадонское ущелье',
-    description: 'Живописные виды и водопады',
-    image: '/vue-tour-osetia/images/karmadon.jpeg',
+    title: 'Алагирское ущелье',
+    description: 'Святилище Уастырджи и источники Тамиск',
+    image: '/vue-tour-osetia/images/ozero.jpg',
     color: '#48bb78'
   },
   {
     id: 3,
     category: 'mountains',
-    title: 'Дигорское ущелье',
-    description: 'Древние башни и природа',
-    image: '/vue-tour-osetia/images/digorya.jpg',
+    title: 'Цейское ущелье',
+    description: 'Горнолыжный курорт и ледники',
+    image: '/vue-tour-osetia/images/ceiskoe.jpg',
     color: '#ed8936'
   },
   {
     id: 4,
     category: 'gorges',
-    title: 'Дарьяльское ущелье',
-    description: 'Живописное горное ущелье',
-    image: '/vue-tour-osetia/images/fiagdon.jpg',
+    title: 'Куртатинское ущелье',
+    description: 'Каньон Кадаргаван и древние башни',
+    image: '/vue-tour-osetia/images/kurtatinskoe.jpg',
     color: '#667eea'
   },
   {
     id: 5,
-    category: 'culture',
-    title: 'Даргавс - Город мертвых',
-    description: 'Древний некрополь',
-    image: '/vue-tour-osetia/images/dargavs.jpg',
+    category: 'mountains',
+    title: 'Дигорское ущелье',
+    description: 'Замок-фрегат и каньон Ахсинта',
+    image: '/vue-tour-osetia/images/digorya.jpg',
     color: '#f687b3'
   },
   {
     id: 6,
     category: 'gorges',
-    title: 'Куртатинское ущелье',
-    description: 'Скальные крепости',
-    image: '/vue-tour-osetia/images/kurtatinskoe.jpg',
+    title: 'Кармадонское ущелье',
+    description: 'Термальные источники и минеральные воды',
+    image: '/vue-tour-osetia/images/karmadon.jpeg',
     color: '#38b2ac'
   },
   {
     id: 7,
-    category: 'mountains',
-    title: 'Горное озеро',
-    description: 'Кристально чистое озеро',
-    image: '/vue-tour-osetia/images/ozero.jpg',
-    color: '#4299e1'
-  },
-  {
-    id: 8,
-    category: 'mountains',
-    title: 'Фиагдон',
-    description: 'Горные вершины',
-    image: '/vue-tour-osetia/images/fiagdon.jpg',
+    category: 'culture',
+    title: 'Даргавское ущелье',
+    description: 'Город мертвых и Мидаграбинские водопады',
+    image: '/vue-tour-osetia/images/dargavs.jpg',
     color: '#9f7aea'
   }
 ]

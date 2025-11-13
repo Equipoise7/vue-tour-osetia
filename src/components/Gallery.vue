@@ -68,6 +68,14 @@ const images = [
     description: 'Город мертвых и Мидаграбинские водопады',
     image: '/vue-tour-osetia/images/dargavs.jpg',
     color: '#9f7aea'
+  },
+  {
+    id: 8,
+    category: 'culture',
+    title: 'Меч в камне',
+    description: 'Легендарный арт-объект Осетии',
+    image: '/vue-tour-osetia/images/mech.webp',
+    color: '#e53e3e'
   }
 ]
 

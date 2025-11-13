@@ -39,10 +39,10 @@ const images = [
   },
   {
     id: 4,
-    category: 'winter',
-    title: 'Зимний Цей',
-    description: 'Горнолыжный курорт',
-    image: '/vue-tour-osetia/images/ceiskoe.jpg',
+    category: 'gorges',
+    title: 'Дарьяльское ущелье',
+    description: 'Живописное горное ущелье',
+    image: '/vue-tour-osetia/images/fiagdon.jpg',
     color: '#667eea'
   },
   {
@@ -50,7 +50,7 @@ const images = [
     category: 'culture',
     title: 'Даргавс - Город мертвых',
     description: 'Древний некрополь',
-    image: '/vue-tour-osetia/images/hero3.jpg',
+    image: '/vue-tour-osetia/images/dargavs.jpg',
     color: '#f687b3'
   },
   {
@@ -58,23 +58,23 @@ const images = [
     category: 'gorges',
     title: 'Куртатинское ущелье',
     description: 'Скальные крепости',
-    image: '/vue-tour-osetia/images/karmadon.jpeg',
+    image: '/vue-tour-osetia/images/kurtatinskoe.jpg',
     color: '#38b2ac'
   },
   {
     id: 7,
     category: 'mountains',
-    title: 'Казбек',
-    description: 'Снежные вершины',
-    image: '/vue-tour-osetia/images/hero1.jpg',
+    title: 'Горное озеро',
+    description: 'Кристально чистое озеро',
+    image: '/vue-tour-osetia/images/ozero.jpg',
     color: '#4299e1'
   },
   {
     id: 8,
-    category: 'winter',
-    title: 'Снежные пейзажи',
-    description: 'Зимняя сказка в горах',
-    image: '/vue-tour-osetia/images/hero2.jpg',
+    category: 'mountains',
+    title: 'Фиагдон',
+    description: 'Горные вершины',
+    image: '/vue-tour-osetia/images/fiagdon.jpg',
     color: '#9f7aea'
   }
 ]

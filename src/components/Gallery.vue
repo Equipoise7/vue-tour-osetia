@@ -253,7 +253,7 @@ const closeImage = () => {
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.02);
+  background: transparent;
   color: white;
   transition: all 0.4s ease;
 }

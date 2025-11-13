@@ -6,20 +6,17 @@ const slides = [
   {
     title: 'Откройте для себя горы Осетии',
     subtitle: 'Незабываемые туры по самым живописным местам Кавказа',
-    image: '/vue-tour-osetia/images/hero1.jpg',
-    gradient: 'linear-gradient(135deg, rgba(44, 82, 130, 0.5) 0%, rgba(66, 153, 225, 0.4) 100%)'
+    image: '/vue-tour-osetia/images/hero1.jpg'
   },
   {
     title: 'Комфортные трансферы',
     subtitle: 'Безопасные и удобные поездки на Toyota Alphard',
-    image: '/vue-tour-osetia/images/hero2.jpg',
-    gradient: 'linear-gradient(135deg, rgba(72, 187, 120, 0.5) 0%, rgba(56, 161, 105, 0.4) 100%)'
+    image: '/vue-tour-osetia/images/hero2.jpg'
   },
   {
     title: 'Индивидуальные маршруты',
     subtitle: 'Создадим уникальное путешествие специально для вас',
-    image: '/vue-tour-osetia/images/hero3.jpg',
-    gradient: 'linear-gradient(135deg, rgba(237, 137, 54, 0.5) 0%, rgba(221, 107, 32, 0.4) 100%)'
+    image: '/vue-tour-osetia/images/hero3.jpg'
   }
 ]
 
@@ -53,7 +50,7 @@ const scrollToContact = () => {
         class="slide"
         :class="{ active: currentSlide === index }"
         :style="{ 
-          backgroundImage: `${slide.gradient}, url(${slide.image})`,
+          backgroundImage: `url(${slide.image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }"

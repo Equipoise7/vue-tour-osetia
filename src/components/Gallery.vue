@@ -131,20 +131,43 @@ const goToPhoto = (i) => {
 }
 
 // Prevent body scroll when modal is open
+const lockScroll = () => {
+  // save current scroll position
+  const scrollY = window.scrollY || window.pageYOffset || 0
+  document.body.dataset.scrollY = String(scrollY)
+  // lock scroll by fixing body position — works on iOS and Android webviews
+  document.body.style.position = 'fixed'
+  document.body.style.top = `-${scrollY}px`
+  document.body.style.left = '0'
+  document.body.style.right = '0'
+  document.body.style.width = '100%'
+}
+
+const unlockScroll = () => {
+  const stored = document.body.dataset.scrollY || '0'
+  // remove styles first
+  document.body.style.position = ''
+  document.body.style.top = ''
+  document.body.style.left = ''
+  document.body.style.right = ''
+  document.body.style.width = ''
+  // restore scroll
+  const scrollY = parseInt(stored, 10) || 0
+  window.scrollTo(0, scrollY)
+  delete document.body.dataset.scrollY
+}
+
 watch(selectedImage, (val) => {
   if (val) {
-    document.documentElement.style.overflow = 'hidden'
-    document.body.style.overflow = 'hidden'
+    lockScroll()
   } else {
-    document.documentElement.style.overflow = ''
-    document.body.style.overflow = ''
+    unlockScroll()
   }
 })
 
 onBeforeUnmount(() => {
-  // cleanup in case component is unmounted while modal is open
-  document.documentElement.style.overflow = ''
-  document.body.style.overflow = ''
+  // ensure cleanup if component unmounts while modal open
+  unlockScroll()
 })
 </script>
 

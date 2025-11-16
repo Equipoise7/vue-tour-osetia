@@ -254,6 +254,13 @@ const telegramLink = `https://t.me/${phoneClean}`
 .method-icon {
   font-size: 2.5rem;
 }
+.method-icon img {
+  width: 42px;
+  height: 42px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 .method-name {
   font-weight: 700;

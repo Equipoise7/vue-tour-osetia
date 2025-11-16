@@ -1,4 +1,6 @@
 <script setup>
+import whatsappIcon from '../assets/icons/whatsapp.svg'
+import telegramIcon from '../assets/icons/telegram.svg'
 const currentYear = new Date().getFullYear()
 const phone = '+7 (989) 741-36-34'
 const phoneClean = '79897413634'
@@ -19,14 +21,14 @@ const phoneClean = '79897413634'
           </p>
           <div class="social-links">
             <a :href="`https://wa.me/${phoneClean}`" target="_blank" class="social-link whatsapp" title="WhatsApp">
-              💬
+              <img :src="whatsappIcon" alt="WhatsApp" />
             </a>
             <a :href="`https://t.me/${phoneClean}`" target="_blank" class="social-link telegram" title="Telegram">
-              ✈️
+              <img :src="telegramIcon" alt="Telegram" />
             </a>
-            <a :href="`tel:${phoneClean}`" class="social-link phone" title="Позвонить">
-              📞
-            </a>
+              <a :href="`tel:${phoneClean}`" class="social-link phone" title="Позвонить">
+                📞
+              </a>
           </div>
         </div>
 
@@ -147,14 +149,28 @@ const phoneClean = '79897413634'
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  border-radius: 10px;
   text-decoration: none;
   font-size: 1.5rem;
   transition: all 0.3s ease;
   border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-link.phone {
+  /* увеличиваем только телефонную эмоджи — соседние иконки не трогаем */
+  font-size: 35px; /* уменьшено на 5px по запросу */
+  line-height: 1;
+}
+
+.social-link img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .social-link:hover {

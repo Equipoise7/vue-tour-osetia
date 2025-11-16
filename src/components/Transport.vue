@@ -43,7 +43,7 @@ const features = [
 
       <div class="transport-content">
         <div class="transport-image">
-          <img src="/images/alphard.jpg" alt="Toyota Alphard" class="car-photo">
+          <img src="/images/alphard.png" alt="Toyota Alphard" class="car-photo">
           <div class="car-overlay">
             <div class="car-label">Toyota Alphard</div>
             <div class="car-badge">Premium</div>
@@ -140,8 +140,11 @@ const features = [
 
 .car-photo {
   width: 100%;
-  height: 500px;
+  /* Сделаем фото выше, чтобы машина не обрезалась снизу */
+  height: 700px;
   object-fit: cover;
+  /* Сместим фокус чуть ниже по вертикали, чтобы видно было нижнюю часть машины */
+  object-position: center 35%;
   display: block;
 }
 
@@ -291,8 +294,10 @@ const features = [
     grid-template-columns: 1fr;
   }
 
+  /* Меньшая высота на планшетах/узких экранах */
   .car-photo {
-    height: 350px;
+    height: 450px;
+    object-position: center 40%;
   }
 }
 

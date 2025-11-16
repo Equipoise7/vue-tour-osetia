@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watch, onBeforeUnmount } from 'vue'
 
 const activeCategory = ref('all')
 const selectedImage = ref(null)
@@ -58,7 +58,13 @@ const images = [
     category: 'gorges',
     title: 'Кармадонское ущелье',
     description: 'Термальные источники и минеральные воды',
+    longDescription: 'Кармадонское ущелье — одно из самых живописных мест Северной Осетии. Здесь расположены минеральные источники, живописные скалы и чистые родники. Маршрут подходит для однодневных и многодневных прогулок, с возможностью отдыха у термальных источников и фотостопов у ключевых видов.',
     image: '/vue-tour-osetia/images/karmadon.jpeg',
+    photos: [
+      '/vue-tour-osetia/images/karmadon.jpeg',
+      '/vue-tour-osetia/images/fiagdon.jpg',
+      '/vue-tour-osetia/images/ceiskoe.jpg'
+    ],
     color: '#38b2ac'
   },
   {
@@ -90,13 +96,56 @@ const filterImages = (category) => {
   }
 }
 
+const currentPhotoIndex = ref(0)
+
 const openImage = (image) => {
   selectedImage.value = image
+  currentPhotoIndex.value = 0
 }
 
 const closeImage = () => {
   selectedImage.value = null
 }
+
+const selectedPhoto = computed(() => {
+  if (!selectedImage.value) return ''
+  if (selectedImage.value.photos && selectedImage.value.photos.length) {
+    return selectedImage.value.photos[currentPhotoIndex.value]
+  }
+  return selectedImage.value.image
+})
+
+const nextPhoto = () => {
+  if (!selectedImage.value || !selectedImage.value.photos) return
+  currentPhotoIndex.value = (currentPhotoIndex.value + 1) % selectedImage.value.photos.length
+}
+
+const prevPhoto = () => {
+  if (!selectedImage.value || !selectedImage.value.photos) return
+  currentPhotoIndex.value = (currentPhotoIndex.value - 1 + selectedImage.value.photos.length) % selectedImage.value.photos.length
+}
+
+const goToPhoto = (i) => {
+  if (!selectedImage.value || !selectedImage.value.photos) return
+  currentPhotoIndex.value = i
+}
+
+// Prevent body scroll when modal is open
+watch(selectedImage, (val) => {
+  if (val) {
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+  }
+})
+
+onBeforeUnmount(() => {
+  // cleanup in case component is unmounted while modal is open
+  document.documentElement.style.overflow = ''
+  document.body.style.overflow = ''
+})
 </script>
 
 <template>
@@ -145,17 +194,38 @@ const closeImage = () => {
       <div v-if="selectedImage" class="modal" @click="closeImage">
         <div class="modal-content" @click.stop>
           <button class="close-btn" @click="closeImage">&times;</button>
-          <div 
-            class="modal-image"
-            :style="{ 
-              backgroundImage: `url(${selectedImage.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }"
-          >
-            <h2 class="modal-title">{{ selectedImage.title }}</h2>
-            <p class="modal-description">{{ selectedImage.description }}</p>
+
+          <div class="modal-body">
+            <div class="modal-gallery">
+              <button class="nav-arrow left" @click="prevPhoto">‹</button>
+              <div 
+                class="modal-main-image"
+                :style="{ 
+                  backgroundImage: `url(${selectedPhoto})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }"
+              ></div>
+              <button class="nav-arrow right" @click="nextPhoto">›</button>
+            </div>
+
+            <div class="modal-info">
+              <h2 class="modal-title">{{ selectedImage.title }}</h2>
+              <p class="modal-description">{{ selectedImage.longDescription || selectedImage.description }}</p>
+
+              <div v-if="selectedImage.photos && selectedImage.photos.length" class="modal-thumbs">
+                <img
+                  v-for="(p, idx) in selectedImage.photos"
+                  :key="idx"
+                  :src="p"
+                  :class="{ active: idx === currentPhotoIndex }"
+                  @click="goToPhoto(idx)"
+                  alt="thumbnail"
+                />
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </transition>
@@ -338,6 +408,74 @@ const closeImage = () => {
   color: white;
 }
 
+/* Modal gallery layout */
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.modal-gallery {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-main-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.nav-arrow.left { left: -24px }
+.nav-arrow.right { right: -24px }
+
+.modal-info {
+  color: #edf2f7;
+}
+
+.modal-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.modal-thumbs img {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.8;
+  border: 2px solid transparent;
+}
+
+.modal-thumbs img.active {
+  opacity: 1;
+  border-color: #4299e1;
+}
+
 .modal-title {
   font-size: 3rem;
   font-weight: 800;
@@ -382,16 +520,41 @@ const closeImage = () => {
     grid-template-columns: 1fr;
   }
 
-  .modal-image {
-    height: 400px;
+  /* На мобильных: показываем фото сначала, затем описание */
+  .modal-body {
+    display: block;
+  }
+
+  .modal-gallery {
+    margin-bottom: 1rem;
+  }
+
+  .modal-main-image {
+    height: 320px;
+    border-radius: 12px;
+    background-position: center top;
+  }
+
+  .modal-thumbs {
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-arrow {
+    display: none; /* стрелки не нужны на узком экране, используем миниатюры и свайп */
+  }
+
+  .modal-info {
+    margin-top: 0.5rem;
   }
 
   .modal-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .modal-description {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 </style>

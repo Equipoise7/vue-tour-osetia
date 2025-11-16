@@ -1,6 +1,6 @@
 <script setup>
-const phone = '+7 (999) 999-99-99'
-const phoneClean = '79999999999'
+const phone = '+7 (989) 741-36-34'
+const phoneClean = '79897413634'
 const whatsappLink = `https://wa.me/${phoneClean}`
 const telegramLink = `https://t.me/${phoneClean}`
 </script>
@@ -52,7 +52,7 @@ const telegramLink = `https://t.me/${phoneClean}`
               <span class="detail-icon">✉️</span>
               <div>
                 <strong>Email:</strong><br>
-                info@osetiatours.ru
+                Transfer15rus@yandex.ru
               </div>
             </div>
           </div>

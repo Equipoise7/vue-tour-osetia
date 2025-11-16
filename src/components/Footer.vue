@@ -1,7 +1,7 @@
 <script setup>
 const currentYear = new Date().getFullYear()
-const phone = '+7 (999) 999-99-99'
-const phoneClean = '79999999999'
+const phone = '+7 (989) 741-36-34'
+const phoneClean = '79897413634'
 </script>
 
 <template>
@@ -61,7 +61,7 @@ const phoneClean = '79999999999'
             </li>
             <li>
               <span class="contact-icon">✉️</span>
-              <a href="mailto:info@osetiatours.ru">info@osetiatours.ru</a>
+              <a href="mailto:Transfer15rus@yandex.ru">Transfer15rus@yandex.ru</a>
             </li>
             <li>
               <span class="contact-icon">📍</span>

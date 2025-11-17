@@ -118,6 +118,8 @@ const features = [
 
 .transport-image {
   position: relative;
+  /* фиксированная высота контейнера, чтобы изображение занимало всю рамку без пустот */
+  height: 700px;
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(44, 82, 130, 0.3);
@@ -139,13 +141,16 @@ const features = [
 }
 
 .car-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  /* Сделаем фото выше, чтобы машина не обрезалась снизу */
-  height: 700px;
+  height: 100%;
   object-fit: cover;
-  /* Сместим фокус чуть ниже по вертикали, чтобы видно было нижнюю часть машины */
-  object-position: center 35%;
+  object-position: center 50%;
   display: block;
+  transition: transform 0.3s ease, object-position 0.3s ease;
+  z-index: 0;
 }
 
 .car-overlay {
@@ -294,16 +299,22 @@ const features = [
     grid-template-columns: 1fr;
   }
 
-  /* Меньшая высота на планшетах/узких экранах */
+  /* Настройки для планшетов: оставляем cover, но смещаем фокус ниже и немного поднимаем картинку */
   .car-photo {
-    height: 450px;
-    object-position: center 40%;
+    /* Убираем transform — оно создаёт пустое пространство внизу при смещении изображения */
+    object-position: center 62%;
   }
 }
 
 @media (max-width: 768px) {
   .transport {
     padding: 4rem 0;
+  }
+
+  /* На телефонах ещё больше смещаем картинку вниз и уменьшаем высоту */
+  .car-photo {
+    /* Поднимем видимую область картинки за счёт object-position, без translate */
+    object-position: center 68%;
   }
 
   .section-title {

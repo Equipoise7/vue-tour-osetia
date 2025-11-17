@@ -1,8 +1,12 @@
 <script setup>
+import whatsappIcon from '../assets/icons/whatsapp.svg'
+import telegramIcon from '../assets/icons/telegram.svg'
+
 const phone = '+7 (989) 741-36-34'
 const phoneClean = '79897413634'
 const whatsappLink = `https://wa.me/${phoneClean}`
-const telegramLink = `https://t.me/${phoneClean}`
+const telegramUsername = 'transfer15reg'
+const telegramLink = `https://t.me/${telegramUsername}`
 </script>
 
 <template>
@@ -24,15 +28,19 @@ const telegramLink = `https://t.me/${phoneClean}`
 
           <div class="contact-methods">
             <a :href="whatsappLink" target="_blank" class="method-btn whatsapp">
-              <div class="method-icon">💬</div>
+              <div class="method-icon">
+                <img :src="whatsappIcon" alt="WhatsApp" />
+              </div>
               <div class="method-content">
                 <div class="method-name">WhatsApp</div>
                 <div class="method-description">Быстрые ответы</div>
               </div>
             </a>
 
-            <a :href="telegramLink" target="_blank" class="method-btn telegram">
-              <div class="method-icon">✈️</div>
+            <a :href="telegramLink" target="_blank" class="method-btn telegram" aria-label="Telegram">
+              <div class="method-icon">
+                <img :src="telegramIcon" alt="Telegram" />
+              </div>
               <div class="method-content">
                 <div class="method-name">Telegram</div>
                 <div class="method-description">Удобный чат</div>
@@ -51,26 +59,12 @@ const telegramLink = `https://t.me/${phoneClean}`
             <div class="detail-item">
               <span class="detail-icon">✉️</span>
               <div>
-                <strong>Email:</strong><br>
-                Transfer15rus@yandex.ru
+                <strong>Email:</strong> Transfer15rus@yandex.ru
               </div>
             </div>
           </div>
         </div>
 
-        <div class="contact-actions">
-          <div class="actions-card">
-            <div class="call-large">
-              <a :href="`tel:${phoneClean}`" class="call-btn">{{ phone }}</a>
-              <p class="call-note">Звоните или пишите в мессенджеры — отвечаем быстро</p>
-            </div>
-
-            <div class="actions-methods">
-              <a :href="whatsappLink" target="_blank" class="action-btn whatsapp">WhatsApp</a>
-              <a :href="telegramLink" target="_blank" class="action-btn telegram">Telegram</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -150,16 +144,19 @@ const telegramLink = `https://t.me/${phoneClean}`
 }
 
 .contact-content {
-  display: grid;
-  grid-template-columns: 1fr 420px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 3rem;
-  align-items: start;
+  width: 100%;
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  text-align: center;
 }
 
 .info-card {
@@ -172,8 +169,15 @@ const telegramLink = `https://t.me/${phoneClean}`
 }
 
 .card-icon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  line-height: 1;
+  color: white;
 }
 
 .card-title {
@@ -232,12 +236,26 @@ const telegramLink = `https://t.me/${phoneClean}`
 .method-icon {
   font-size: 2.5rem;
 }
+.method-icon {
+  font-size: 2.5rem;
+}
 .method-icon img {
   width: 42px;
   height: 42px;
   display: block;
   border-radius: 50%;
   object-fit: cover;
+}
+.method-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+}
+.method-icon-link:focus {
+  outline: 2px solid rgba(66,153,225,0.6);
+  outline-offset: 2px;
 }
 
 .method-name {
@@ -263,6 +281,7 @@ const telegramLink = `https://t.me/${phoneClean}`
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  align-items: center;
 }
 
 .detail-item:last-child {
@@ -324,6 +343,13 @@ const telegramLink = `https://t.me/${phoneClean}`
 .action-btn.whatsapp { background: #25D366 }
 .action-btn.telegram { background: #2AABEE }
 
+/* Стили для .method-icon img и .card-icon img */
+.card-icon img {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -375,7 +401,7 @@ textarea.form-input {
 
 @media (max-width: 968px) {
   .contact-content {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .contact-methods {
@@ -393,7 +419,7 @@ textarea.form-input {
   }
 
   .contact-content {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .actions-card {

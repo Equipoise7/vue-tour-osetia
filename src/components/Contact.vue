@@ -58,40 +58,17 @@ const telegramLink = `https://t.me/${phoneClean}`
           </div>
         </div>
 
-        <div class="contact-form-wrapper">
-          <div class="form-card">
-            <h3 class="form-title">Оставьте заявку</h3>
-            <p class="form-subtitle">Мы свяжемся с вами в ближайшее время</p>
+        <div class="contact-actions">
+          <div class="actions-card">
+            <div class="call-large">
+              <a :href="`tel:${phoneClean}`" class="call-btn">{{ phone }}</a>
+              <p class="call-note">Звоните или пишите в мессенджеры — отвечаем быстро</p>
+            </div>
 
-            <form class="contact-form" @submit.prevent="handleSubmit">
-              <div class="form-group">
-                <input type="text" placeholder="Ваше имя" required class="form-input">
-              </div>
-
-              <div class="form-group">
-                <input type="tel" placeholder="Телефон" required class="form-input">
-              </div>
-
-              <div class="form-group">
-                <select class="form-input" required>
-                  <option value="">Выберите услугу</option>
-                  <option value="tour">Горный тур</option>
-                  <option value="transfer">Трансфер</option>
-                  <option value="photo">Фототур</option>
-                  <option value="winter">Зимний тур</option>
-                  <option value="culture">Культурная экскурсия</option>
-                  <option value="vip">VIP тур</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <textarea placeholder="Комментарий" rows="4" class="form-input"></textarea>
-              </div>
-
-              <button type="submit" class="submit-btn">
-                Отправить заявку
-              </button>
-            </form>
+            <div class="actions-methods">
+              <a :href="whatsappLink" target="_blank" class="action-btn whatsapp">WhatsApp</a>
+              <a :href="telegramLink" target="_blank" class="action-btn telegram">Telegram</a>
+            </div>
           </div>
         </div>
       </div>
@@ -174,8 +151,9 @@ const telegramLink = `https://t.me/${phoneClean}`
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 420px;
   gap: 3rem;
+  align-items: start;
 }
 
 .contact-info {
@@ -296,30 +274,55 @@ const telegramLink = `https://t.me/${phoneClean}`
   flex-shrink: 0;
 }
 
-.contact-form-wrapper {
+
+.contact-actions {
   display: flex;
   align-items: center;
 }
 
-.form-card {
+.actions-card {
   background: white;
-  padding: 3rem;
-  border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
   width: 100%;
+  text-align: center;
 }
 
-.form-title {
-  font-size: 2rem;
+.call-btn {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
-  color: #2c5282;
-  margin-bottom: 0.5rem;
+  color: white;
+  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(66,153,225,0.25);
 }
 
-.form-subtitle {
+.call-note {
   color: #718096;
-  margin-bottom: 2rem;
+  margin-top: 0.75rem;
 }
+
+.actions-methods {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+
+.action-btn.whatsapp { background: #25D366 }
+.action-btn.telegram { background: #2AABEE }
 
 .contact-form {
   display: flex;
@@ -389,8 +392,16 @@ textarea.form-input {
     font-size: 2rem;
   }
 
-  .form-card {
-    padding: 2rem;
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-card {
+    padding: 1.25rem;
+  }
+
+  .call-btn {
+    font-size: 1.25rem;
   }
 
   .phone-number {

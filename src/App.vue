@@ -2,9 +2,7 @@
 import Preloader from './components/Preloader.vue'
 import Header from './components/Header.vue'
 import Hero from './components/Hero.vue'
-import Services from './components/Services.vue'
-import Gallery from './components/Gallery.vue'
-import Transport from './components/Transport.vue'
+import ServicesTab from './components/ServicesTab.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
 </script>
@@ -14,9 +12,7 @@ import Footer from './components/Footer.vue'
   <div class="app">
     <Header />
     <Hero />
-    <Services />
-    <Gallery />
-    <Transport />
+    <ServicesTab />
     <Contact />
     <Footer />
   </div>

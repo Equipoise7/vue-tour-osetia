@@ -46,8 +46,6 @@ const scrollToSection = (sectionId) => {
       <nav class="nav" :class="{ open: isMenuOpen }">
         <a @click="scrollToSection('hero')" class="nav-link">Главная</a>
         <a @click="scrollToSection('services')" class="nav-link">Услуги</a>
-        <a @click="scrollToSection('gallery')" class="nav-link">Маршруты</a>
-        <a @click="scrollToSection('transport')" class="nav-link">Транспорт</a>
         <a @click="scrollToSection('contact')" class="nav-link contact-btn">Связаться</a>
       </nav>
     </div>

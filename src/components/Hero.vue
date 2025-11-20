@@ -37,10 +37,10 @@ const onVideoLoaded = () => {
 
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title" data-aos="fade-up">Откройте для себя горы Осетии</h1>
-        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Незабываемые туры по самым живописным местам Кавказа</p>
+        <h1 class="hero-title" data-aos="fade-up">Откройте для себя Северную Осетию</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Комфортные трансферы и незабываемые экскурсии по самым живописным местам Кавказа</p>
         <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
-          <button @click="scrollToContact" class="btn btn-primary">Забронировать тур</button>
+          <button @click="scrollToContact" class="btn btn-primary">Забронировать</button>
           <a href="tel:+79999999999" class="btn btn-secondary">Позвонить</a>
         </div>
       </div>

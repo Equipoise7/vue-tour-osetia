@@ -325,7 +325,8 @@ const scrollToSection = (sectionId) => {
     top: 70px;
     left: 0;
     right: 0;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     flex-direction: column;
     padding: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

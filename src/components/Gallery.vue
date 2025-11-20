@@ -15,10 +15,35 @@ const categories = [
 const images = [
   {
     id: 1,
-    category: 'gorges',
-    title: 'Дарьяльское ущелье',
-    description: 'Ворота Кавказа на Военно-Грузинской дороге',
-    image: '/images/fiagdon.jpg'
+    category: 'all',
+    title: 'Золотое кольцо',
+    description: 'Легендарный маршрут по главным достопримечательностям Осетии',
+    video: '/videos/cards_videos/koleso.mp4',
+    image: '/images/fiagdon.jpg',
+    detailedDescription: `- ПАМЯТНИК ЖЕРТВАМ СХОДА ЛЕДНИКА КОЛКА
+- ПРЕДПОЛОЖИТЕЛЬНОЕ МЕСТО ГИБЕЛИ СЪЕМОЧНОЙ ГРУППЫ БОДРОВА
+- СМОТРОВАЯ ПЛОЩАДКА В СЕЛЕНИИ КАНИ
+- ДАРГАВСКИЙ НЕКРОПОЛЬ (МЕРТВЫЙ ГОРОДОК)
+- МИДАГРАБИНСКИЕ ВОДОПАДЫ
+- БУКВА Æ
+- КАЧЕЛИ НАД ОБРЫВОМ
+- БАШНИ КУРТА И ТАГА
+- АЛАНСКИЙ МУЖСКОЙ МОНАСТЫРЬ (САМЫЙ ВЫСОКОГОРНЫЙ МОНАСТЫРЬ)
+- ДЗИВГИССКАЯ НАСКАЛЬНАЯ КРЕПОСТЬ
+- КАДАРГАВАНСКИЙ КАНЬОН
+- КАСКАДНЫЙ ВОДОПАД
+
+ДОПОЛНИТЕЛЬНЫЕ ЛОКАЦИИ:
+- лавочка счастья
+- водопад кольцо
+
+ЧТО ВХОДИТ В СТОИМОСТЬ ТУРА:
+- услуги гида-экскурсовода на внедорожнике
+- фото-видеосъемка 📹
+- по желанию : перекус (мятный чай, осетинский сыр, хлеб)
+- главное и основное : прекрасное настроение 😊
+
+* Съемка с квадракоптера по запросу`
   },
   {
     id: 2,
@@ -175,12 +200,26 @@ onBeforeUnmount(() => {
           :key="image.id"
           class="gallery-item"
           @click="openImage(image)"
-          :style="{ 
-            backgroundImage: `url(${image.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }"
         >
+          <video 
+            v-if="image.video"
+            class="gallery-video"
+            :src="image.video"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+          <div 
+            v-else
+            class="gallery-image"
+            :style="{ 
+              backgroundImage: `url(${image.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }"
+          ></div>
           <div class="gallery-overlay">
             <h3 class="gallery-title">{{ image.title }}</h3>
             <p class="gallery-description">{{ image.description }}</p>
@@ -212,7 +251,8 @@ onBeforeUnmount(() => {
 
             <div class="modal-info">
               <h2 class="modal-title">{{ selectedImage.title }}</h2>
-              <p class="modal-description">{{ selectedImage.longDescription || selectedImage.description }}</p>
+              <p v-if="selectedImage.detailedDescription" class="modal-description detailed" v-html="selectedImage.detailedDescription.replace(/\n/g, '<br>')"></p>
+              <p v-else class="modal-description">{{ selectedImage.longDescription || selectedImage.description }}</p>
 
               <div v-if="selectedImage.photos && selectedImage.photos.length" class="modal-thumbs">
                 <img
@@ -304,11 +344,24 @@ onBeforeUnmount(() => {
 
 .gallery-item {
   position: relative;
-  height: 350px;
+  aspect-ratio: 9 / 16;
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s ease;
+}
+
+.gallery-video,
+.gallery-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-video {
+  pointer-events: none;
 }
 
 .gallery-item:hover {
@@ -487,6 +540,34 @@ onBeforeUnmount(() => {
 .modal-description {
   font-size: 1.5rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-description.detailed {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: left;
+  white-space: pre-line;
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.modal-description.detailed::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-description.detailed::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.modal-description.detailed::-webkit-scrollbar-thumb {
+  background: rgba(66, 153, 225, 0.6);
+  border-radius: 10px;
+}
+
+.modal-description.detailed::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 153, 225, 0.8);
 }
 
 .modal-enter-active, .modal-leave-active {

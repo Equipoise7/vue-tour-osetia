@@ -1,81 +1,49 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 
-const currentSlide = ref(0)
-const slides = [
-  {
-    title: 'Откройте для себя горы Осетии',
-    subtitle: 'Незабываемые туры по самым живописным местам Кавказа',
-    image: '/images/hero1.jpg'
-  },
-  {
-    title: 'Комфортные трансферы',
-    subtitle: 'Безопасные и удобные поездки на Toyota Alphard',
-    image: '/images/hero2.jpg'
-  },
-  {
-    title: 'Индивидуальные маршруты',
-    subtitle: 'Создадим уникальное путешествие специально для вас',
-    image: '/images/hero3.jpg'
-  }
-]
-
-let interval
-
-onMounted(() => {
-  interval = setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % slides.length
-  }, 5000)
-})
-
-onUnmounted(() => {
-  clearInterval(interval)
-})
-
-const setSlide = (index) => {
-  currentSlide.value = index
-}
+const videoLoaded = ref(false)
 
 const scrollToContact = () => {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+}
+
+const onVideoLoaded = () => {
+  videoLoaded.value = true
 }
 </script>
 
 <template>
   <section id="hero" class="hero">
-    <div class="hero-slider">
-      <div 
-        v-for="(slide, index) in slides" 
-        :key="index"
-        class="slide"
-        :class="{ active: currentSlide === index }"
-        :style="{ 
-          backgroundImage: `url(${slide.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }"
+    <!-- Video Background -->
+    <div class="video-background">
+      <video
+        :class="{ 'video-loaded': videoLoaded }"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        @loadeddata="onVideoLoaded"
       >
-        <div class="container">
-          <div class="hero-content">
-            <h1 class="hero-title" data-aos="fade-up">{{ slide.title }}</h1>
-            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">{{ slide.subtitle }}</p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
-              <button @click="scrollToContact" class="btn btn-primary">Забронировать тур</button>
-              <a href="tel:+79999999999" class="btn btn-secondary">Позвонить</a>
-            </div>
-          </div>
-        </div>
-      </div>
+        <source src="/videos/video.mp4" type="video/mp4">
+      </video>
+      <!-- Fallback image while video loads -->
+      <div 
+        v-if="!videoLoaded"
+        class="video-fallback"
+        :style="{ backgroundImage: 'url(/images/hero1.jpg)' }"
+      ></div>
     </div>
 
-    <div class="slider-dots">
-      <button 
-        v-for="(slide, index) in slides" 
-        :key="index"
-        @click="setSlide(index)"
-        class="dot"
-        :class="{ active: currentSlide === index }"
-      ></button>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title" data-aos="fade-up">Откройте для себя горы Осетии</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Незабываемые туры по самым живописным местам Кавказа</p>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+          <button @click="scrollToContact" class="btn btn-primary">Забронировать тур</button>
+          <a href="tel:+79999999999" class="btn btn-secondary">Позвонить</a>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -86,30 +54,47 @@ const scrollToContact = () => {
   height: 100vh;
   min-height: 600px;
   overflow: hidden;
-  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-slider {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.slide {
+/* Video Background Styles */
+.video-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  overflow: hidden;
 }
 
-.slide.active {
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.video-background video.video-loaded {
   opacity: 1;
+}
+
+.video-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 .container {
@@ -117,6 +102,8 @@ const scrollToContact = () => {
   margin: 0 auto;
   padding: 0 2rem;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content {
@@ -130,7 +117,7 @@ const scrollToContact = () => {
   font-size: 4rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.6);
   animation: fadeInUp 1s ease;
 }
 
@@ -138,7 +125,7 @@ const scrollToContact = () => {
   font-size: 1.5rem;
   margin-bottom: 2.5rem;
   opacity: 0.95;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 1px 5px rgba(0, 0, 0, 0.6);
   animation: fadeInUp 1s ease 0.2s backwards;
 }
 
@@ -185,63 +172,6 @@ const scrollToContact = () => {
   transform: translateY(-3px);
 }
 
-.slider-dots {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 1rem;
-  z-index: 10;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dot.active {
-  background: white;
-  width: 40px;
-  border-radius: 6px;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-  animation: bounce 2s infinite;
-}
-
-.mouse {
-  width: 30px;
-  height: 50px;
-  border: 2px solid white;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  padding-top: 8px;
-}
-
-.wheel {
-  width: 4px;
-  height: 10px;
-  background: white;
-  border-radius: 2px;
-  animation: scroll 1.5s infinite;
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -250,29 +180,6 @@ const scrollToContact = () => {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-  60% {
-    transform: translateX(-50%) translateY(-5px);
-  }
-}
-
-@keyframes scroll {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(20px);
   }
 }
 
@@ -293,6 +200,12 @@ const scrollToContact = () => {
   .hero-buttons {
     flex-direction: column;
     gap: 1rem;
+  }
+  
+  /* On mobile, reduce video quality impact */
+  .video-background video {
+    min-width: 100%;
+    width: 100%;
   }
 }
 </style>

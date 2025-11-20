@@ -18,40 +18,35 @@ const images = [
     category: 'gorges',
     title: 'Дарьяльское ущелье',
     description: 'Ворота Кавказа на Военно-Грузинской дороге',
-    image: '/vue-tour-osetia/images/fiagdon.jpg',
-    color: '#4299e1'
+    image: '/images/fiagdon.jpg'
   },
   {
     id: 2,
     category: 'gorges',
     title: 'Алагирское ущелье',
     description: 'Святилище Уастырджи и источники Тамиск',
-    image: '/vue-tour-osetia/images/ozero.jpg',
-    color: '#48bb78'
+    image: '/images/ozero.jpg'
   },
   {
     id: 3,
     category: 'mountains',
     title: 'Цейское ущелье',
     description: 'Горнолыжный курорт и ледники',
-    image: '/vue-tour-osetia/images/ceiskoe.jpg',
-    color: '#ed8936'
+    image: '/images/ceiskoe.jpg'
   },
   {
     id: 4,
     category: 'gorges',
     title: 'Куртатинское ущелье',
     description: 'Каньон Кадаргаван и древние башни',
-    image: '/vue-tour-osetia/images/kurtatinskoe.jpg',
-    color: '#667eea'
+    image: '/images/kurtatinskoe.jpg'
   },
   {
     id: 5,
     category: 'mountains',
     title: 'Дигорское ущелье',
     description: 'Замок-фрегат и каньон Ахсинта',
-    image: '/vue-tour-osetia/images/digorya.jpg',
-    color: '#f687b3'
+    image: '/images/digorya.jpg'
   },
   {
     id: 6,
@@ -59,29 +54,26 @@ const images = [
     title: 'Кармадонское ущелье',
     description: 'Термальные источники и минеральные воды',
     longDescription: 'Кармадонское ущелье — одно из самых живописных мест Северной Осетии. Здесь расположены минеральные источники, живописные скалы и чистые родники. Маршрут подходит для однодневных и многодневных прогулок, с возможностью отдыха у термальных источников и фотостопов у ключевых видов.',
-    image: '/vue-tour-osetia/images/karmadon.jpeg',
+    image: '/images/karmadon.jpeg',
     photos: [
-      '/vue-tour-osetia/images/karmadon.jpeg',
-      '/vue-tour-osetia/images/fiagdon.jpg',
-      '/vue-tour-osetia/images/ceiskoe.jpg'
-    ],
-    color: '#38b2ac'
+      '/images/karmadon.jpeg',
+      '/images/fiagdon.jpg',
+      '/images/ceiskoe.jpg'
+    ]
   },
   {
     id: 7,
     category: 'culture',
     title: 'Даргавское ущелье',
     description: 'Город мертвых и Мидаграбинские водопады',
-    image: '/vue-tour-osetia/images/dargavs.jpg',
-    color: '#9f7aea'
+    image: '/images/dargavs.jpg'
   },
   {
     id: 8,
     category: 'culture',
     title: 'Меч в камне',
     description: 'Легендарный арт-объект Осетии',
-    image: '/vue-tour-osetia/images/mech.webp',
-    color: '#e53e3e'
+    image: '/images/mech.webp'
   }
 ]
 
@@ -89,11 +81,7 @@ const filteredImages = ref(images)
 
 const filterImages = (category) => {
   activeCategory.value = category
-  if (category === 'all') {
-    filteredImages.value = images
-  } else {
-    filteredImages.value = images.filter(img => img.category === category)
-  }
+  filteredImages.value = category === 'all' ? images : images.filter(img => img.category === category)
 }
 
 const currentPhotoIndex = ref(0)
@@ -109,33 +97,30 @@ const closeImage = () => {
 
 const selectedPhoto = computed(() => {
   if (!selectedImage.value) return ''
-  if (selectedImage.value.photos && selectedImage.value.photos.length) {
+  if (selectedImage.value.photos?.length) {
     return selectedImage.value.photos[currentPhotoIndex.value]
   }
   return selectedImage.value.image
 })
 
 const nextPhoto = () => {
-  if (!selectedImage.value || !selectedImage.value.photos) return
+  if (!selectedImage.value?.photos) return
   currentPhotoIndex.value = (currentPhotoIndex.value + 1) % selectedImage.value.photos.length
 }
 
 const prevPhoto = () => {
-  if (!selectedImage.value || !selectedImage.value.photos) return
+  if (!selectedImage.value?.photos) return
   currentPhotoIndex.value = (currentPhotoIndex.value - 1 + selectedImage.value.photos.length) % selectedImage.value.photos.length
 }
 
 const goToPhoto = (i) => {
-  if (!selectedImage.value || !selectedImage.value.photos) return
+  if (!selectedImage.value?.photos) return
   currentPhotoIndex.value = i
 }
 
-// Prevent body scroll when modal is open
 const lockScroll = () => {
-  // save current scroll position
   const scrollY = window.scrollY || window.pageYOffset || 0
   document.body.dataset.scrollY = String(scrollY)
-  // lock scroll by fixing body position — works on iOS and Android webviews
   document.body.style.position = 'fixed'
   document.body.style.top = `-${scrollY}px`
   document.body.style.left = '0'
@@ -145,28 +130,21 @@ const lockScroll = () => {
 
 const unlockScroll = () => {
   const stored = document.body.dataset.scrollY || '0'
-  // remove styles first
   document.body.style.position = ''
   document.body.style.top = ''
   document.body.style.left = ''
   document.body.style.right = ''
   document.body.style.width = ''
-  // restore scroll
   const scrollY = parseInt(stored, 10) || 0
   window.scrollTo(0, scrollY)
   delete document.body.dataset.scrollY
 }
 
 watch(selectedImage, (val) => {
-  if (val) {
-    lockScroll()
-  } else {
-    unlockScroll()
-  }
+  val ? lockScroll() : unlockScroll()
 })
 
 onBeforeUnmount(() => {
-  // ensure cleanup if component unmounts while modal open
   unlockScroll()
 })
 </script>

@@ -5,8 +5,7 @@ import telegramIcon from '../assets/icons/telegram.svg'
 const phone = '+7 (989) 741-36-34'
 const phoneClean = '79897413634'
 const whatsappLink = `https://wa.me/${phoneClean}`
-const telegramUsername = 'transfer15reg'
-const telegramLink = `https://t.me/${telegramUsername}`
+const telegramLink = `https://t.me/transfer15reg`
 </script>
 
 <template>
@@ -236,26 +235,13 @@ const telegramLink = `https://t.me/${telegramUsername}`
 .method-icon {
   font-size: 2.5rem;
 }
-.method-icon {
-  font-size: 2.5rem;
-}
+
 .method-icon img {
   width: 42px;
   height: 42px;
   display: block;
   border-radius: 50%;
   object-fit: cover;
-}
-.method-icon-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: inherit;
-}
-.method-icon-link:focus {
-  outline: 2px solid rgba(66,153,225,0.6);
-  outline-offset: 2px;
 }
 
 .method-name {
@@ -293,112 +279,6 @@ const telegramLink = `https://t.me/${telegramUsername}`
   flex-shrink: 0;
 }
 
-
-.contact-actions {
-  display: flex;
-  align-items: center;
-}
-
-.actions-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-  width: 100%;
-  text-align: center;
-}
-
-.call-btn {
-  display: inline-block;
-  padding: 1rem 1.5rem;
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: white;
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 8px 30px rgba(66,153,225,0.25);
-}
-
-.call-note {
-  color: #718096;
-  margin-top: 0.75rem;
-}
-
-.actions-methods {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.action-btn {
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: 700;
-}
-
-.action-btn.whatsapp { background: #25D366 }
-.action-btn.telegram { background: #2AABEE }
-
-/* Стили для .method-icon img и .card-icon img */
-.card-icon img {
-  width: 64px;
-  height: 64px;
-  display: block;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.form-group {
-  width: 100%;
-}
-
-.form-input {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  font-family: inherit;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-}
-
-textarea.form-input {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.submit-btn {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(66, 153, 225, 0.4);
-}
-
-.submit-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 30px rgba(66, 153, 225, 0.5);
-}
-
 @media (max-width: 968px) {
   .contact-content {
     flex-direction: column;
@@ -420,14 +300,6 @@ textarea.form-input {
 
   .contact-content {
     flex-direction: column;
-  }
-
-  .actions-card {
-    padding: 1.25rem;
-  }
-
-  .call-btn {
-    font-size: 1.25rem;
   }
 
   .phone-number {

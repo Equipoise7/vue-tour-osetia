@@ -6,17 +6,17 @@ const slides = [
   {
     title: 'Откройте для себя горы Осетии',
     subtitle: 'Незабываемые туры по самым живописным местам Кавказа',
-    image: '/vue-tour-osetia/images/hero1.jpg'
+    image: '/images/hero1.jpg'
   },
   {
     title: 'Комфортные трансферы',
     subtitle: 'Безопасные и удобные поездки на Toyota Alphard',
-    image: '/vue-tour-osetia/images/hero2.jpg'
+    image: '/images/hero2.jpg'
   },
   {
     title: 'Индивидуальные маршруты',
     subtitle: 'Создадим уникальное путешествие специально для вас',
-    image: '/vue-tour-osetia/images/hero3.jpg'
+    image: '/images/hero3.jpg'
   }
 ]
 

@@ -85,6 +85,31 @@ const switchTab = (tabId) => {
   gap: 1.5rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.tabs::after {
+  content: 'Кликните для выбора ☝️';
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  color: #4299e1;
+  font-weight: 600;
+  animation: bounce 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  50% { 
+    transform: translateX(-50%) translateY(-8px);
+    opacity: 0.7;
+  }
 }
 
 .tab-button {
@@ -162,6 +187,11 @@ const switchTab = (tabId) => {
 
   .section-subtitle {
     font-size: 1.1rem;
+  }
+
+  .tabs::after {
+    bottom: -2rem;
+    font-size: 0.85rem;
   }
 
   .tabs {

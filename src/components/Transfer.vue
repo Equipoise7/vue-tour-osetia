@@ -1,28 +1,94 @@
 <script setup>
+import { ref, computed, watch, onBeforeUnmount } from 'vue'
+
+const selectedService = ref(null)
+const currentPhotoIndex = ref(0)
+
 const transferServices = [
   {
     icon: '🚙',
     title: 'Комфортные поездки',
     description: 'Перевозки по городу и межгород на премиальном автомобиле',
-    features: ['По Владикавказу', 'По всей России', 'Комфорт класса люкс']
+    features: ['По Владикавказу', 'По всей России', 'Комфорт класса люкс'],
+    detailedDescription: `Предлагаем комфортабельные поездки на премиальном автомобиле Toyota Alphard.
+
+✓ Поездки по Владикавказу
+✓ Межгородские перевозки по всей России
+✓ Комфорт класса люкс
+✓ Опытные водители
+✓ Чистый и ухоженный автомобиль
+✓ Кондиционер и мультимедиа
+✓ Возможность остановок по маршруту
+
+Идеально подходит для деловых поездок, семейных путешествий и комфортного передвижения по городу.`,
+    photos: [
+      '/images/alphard.png',
+      '/images/fiagdon.jpg'
+    ]
   },
   {
     icon: '✈️',
     title: 'Аэропорт и вокзал',
     description: 'Встречи и проводы с табличкой, помощь с багажом',
-    features: ['Встреча с табличкой', 'Помощь с багажом', 'Точность по времени']
+    features: ['Встреча с табличкой', 'Помощь с багажом', 'Точность по времени'],
+    detailedDescription: `Профессиональный сервис встречи и проводов в аэропорту и на вокзале.
+
+✓ Встреча с именной табличкой
+✓ Помощь с багажом
+✓ Отслеживание рейсов
+✓ Пунктуальность и точность
+✓ Комфортное ожидание
+✓ Прямая связь с водителем
+✓ Фиксированная цена без доплат
+
+Встретим вас или ваших гостей с максимальным комфортом в любое время суток.`,
+    photos: [
+      '/images/alphard.png',
+      '/images/ozero.jpg'
+    ]
   },
   {
     icon: '🏨',
     title: 'Отель и гостиницы',
     description: 'Трансфер до любого отеля или гостиницы',
-    features: ['Быстрая подача', 'Удобный маршрут', 'Фиксированная цена']
+    features: ['Быстрая подача', 'Удобный маршрут', 'Фиксированная цена'],
+    detailedDescription: `Трансфер до отелей и гостиниц Владикавказа и пригорода.
+
+✓ Быстрая подача автомобиля
+✓ Оптимальный маршрут
+✓ Фиксированная стоимость
+✓ Просторный багажник
+✓ Помощь с вещами
+✓ Информация о городе от водителя
+✓ Безналичная оплата
+
+Доставим вас в отель быстро, комфортно и безопасно.`,
+    photos: [
+      '/images/alphard.png',
+      '/images/ceiskoe.jpg'
+    ]
   },
   {
     icon: '💼',
     title: 'Корпоративные перевозки',
     description: 'Для деловых встреч и корпоративных мероприятий',
-    features: ['Надёжность', 'Пунктуальность', 'Конфиденциальность']
+    features: ['Надёжность', 'Пунктуальность', 'Конфиденциальность'],
+    detailedDescription: `Корпоративные перевозки для деловых людей и компаний.
+
+✓ Абсолютная надёжность
+✓ Пунктуальность до минуты
+✓ Конфиденциальность
+✓ Представительский класс
+✓ Деловая атмосфера
+✓ Возможность работы в дороге
+✓ Регулярные перевозки со скидкой
+✓ Документы для бухгалтерии
+
+Идеальное решение для деловых встреч, переговоров и корпоративных мероприятий.`,
+    photos: [
+      '/images/alphard.png',
+      '/images/dargavs.jpg'
+    ]
   }
 ]
 
@@ -34,6 +100,68 @@ const carFeatures = [
   'Панорамная крыша',
   'Современная аудиосистема'
 ]
+
+const openService = (service) => {
+  selectedService.value = service
+  currentPhotoIndex.value = 0
+}
+
+const closeService = () => {
+  selectedService.value = null
+}
+
+const selectedPhoto = computed(() => {
+  if (!selectedService.value) return ''
+  if (selectedService.value.photos?.length) {
+    return selectedService.value.photos[currentPhotoIndex.value]
+  }
+  return '/images/alphard.png'
+})
+
+const nextPhoto = () => {
+  if (!selectedService.value?.photos) return
+  currentPhotoIndex.value = (currentPhotoIndex.value + 1) % selectedService.value.photos.length
+}
+
+const prevPhoto = () => {
+  if (!selectedService.value?.photos) return
+  currentPhotoIndex.value = (currentPhotoIndex.value - 1 + selectedService.value.photos.length) % selectedService.value.photos.length
+}
+
+const goToPhoto = (i) => {
+  if (!selectedService.value?.photos) return
+  currentPhotoIndex.value = i
+}
+
+const lockScroll = () => {
+  const scrollY = window.scrollY || window.pageYOffset || 0
+  document.body.dataset.scrollY = String(scrollY)
+  document.body.style.position = 'fixed'
+  document.body.style.top = `-${scrollY}px`
+  document.body.style.left = '0'
+  document.body.style.right = '0'
+  document.body.style.width = '100%'
+}
+
+const unlockScroll = () => {
+  const stored = document.body.dataset.scrollY || '0'
+  document.body.style.position = ''
+  document.body.style.top = ''
+  document.body.style.left = ''
+  document.body.style.right = ''
+  document.body.style.width = ''
+  const scrollY = parseInt(stored, 10) || 0
+  window.scrollTo(0, scrollY)
+  delete document.body.dataset.scrollY
+}
+
+watch(selectedService, (val) => {
+  val ? lockScroll() : unlockScroll()
+})
+
+onBeforeUnmount(() => {
+  unlockScroll()
+})
 </script>
 
 <template>
@@ -43,6 +171,7 @@ const carFeatures = [
         v-for="(service, index) in transferServices" 
         :key="index"
         class="service-card"
+        @click="openService(service)"
       >
         <div class="service-icon">{{ service.icon }}</div>
         <h3 class="service-title">{{ service.title }}</h3>
@@ -52,6 +181,7 @@ const carFeatures = [
             <span class="checkmark">✓</span> {{ feature }}
           </li>
         </ul>
+        <div class="view-more">Подробнее →</div>
       </div>
     </div>
 
@@ -85,6 +215,46 @@ const carFeatures = [
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <transition name="modal">
+      <div v-if="selectedService" class="modal" @click="closeService">
+        <div class="modal-content" @click.stop>
+          <button class="close-btn" @click="closeService">&times;</button>
+          <div class="modal-body">
+            <div class="modal-gallery">
+              <button v-if="selectedService.photos && selectedService.photos.length > 1" class="nav-arrow left" @click="prevPhoto">‹</button>
+              <div
+                class="modal-main-image"
+                :style="{
+                  backgroundImage: `url(${selectedPhoto})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }"
+              ></div>
+              <button v-if="selectedService.photos && selectedService.photos.length > 1" class="nav-arrow right" @click="nextPhoto">›</button>
+            </div>
+
+            <div class="modal-info">
+              <div class="modal-icon">{{ selectedService.icon }}</div>
+              <h2 class="modal-title">{{ selectedService.title }}</h2>
+              <p class="modal-description" v-html="selectedService.detailedDescription.replace(/\n/g, '<br>')"></p>
+              <div v-if="selectedService.photos && selectedService.photos.length > 1" class="modal-thumbs">
+                <img
+                  v-for="(p, idx) in selectedService.photos"
+                  :key="idx"
+                  :src="p"
+                  :class="{ active: idx === currentPhotoIndex }"
+                  @click="goToPhoto(idx)"
+                  alt="thumbnail"
+                />
+              </div>
+              <a href="#contact" class="modal-cta-btn" @click="closeService">Заказать</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -187,6 +357,24 @@ const carFeatures = [
   font-size: 0.7rem;
   font-weight: bold;
   flex-shrink: 0;
+}
+
+.view-more {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(66, 153, 225, 0.2);
+  color: #4299e1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .view-more {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Блок с машиной */
@@ -356,6 +544,204 @@ const carFeatures = [
   }
 }
 
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  animation: modalZoom 0.3s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+  color: #4299e1;
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.modal-gallery {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-main-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background: #4299e1;
+  color: white;
+}
+
+.nav-arrow.left { left: -24px; }
+.nav-arrow.right { right: -24px; }
+
+.modal-info {
+  color: #edf2f7;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.modal-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: left;
+  white-space: pre-line;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 1rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.modal-description::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-description::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.modal-description::-webkit-scrollbar-thumb {
+  background: rgba(66, 153, 225, 0.6);
+  border-radius: 10px;
+}
+
+.modal-description::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 153, 225, 0.8);
+}
+
+.modal-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.modal-thumbs img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.modal-thumbs img:hover {
+  opacity: 0.8;
+}
+
+.modal-thumbs img.active {
+  opacity: 1;
+  border-color: #4299e1;
+}
+
+.modal-cta-btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(66, 153, 225, 0.4);
+  transition: all 0.3s ease;
+}
+
+.modal-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(66, 153, 225, 0.5);
+}
+
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from, .modal-leave-to {
+  opacity: 0;
+}
+
+@keyframes modalZoom {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 968px) {
   .car-content {
     grid-template-columns: 1fr;
@@ -372,6 +758,27 @@ const carFeatures = [
 
   .car-photo {
     object-position: center 70%;
+  }
+
+  .modal-body {
+    display: block;
+  }
+
+  .modal-gallery {
+    margin-bottom: 1rem;
+  }
+
+  .modal-main-image {
+    height: 350px;
+  }
+
+  .modal-title {
+    font-size: 1.8rem;
+  }
+
+  .modal-description {
+    font-size: 0.95rem;
+    max-height: 250px;
   }
 }
 
@@ -399,6 +806,48 @@ const carFeatures = [
 
   .info-description {
     font-size: 0.95rem;
+  }
+
+  .modal {
+    padding: 1rem;
+  }
+
+  .close-btn {
+    top: -40px;
+    font-size: 2.5rem;
+  }
+
+  .modal-main-image {
+    height: 300px;
+    border-radius: 12px;
+  }
+
+  .nav-arrow {
+    display: none;
+  }
+
+  .modal-icon {
+    font-size: 2rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-description {
+    font-size: 0.9rem;
+    max-height: 200px;
+  }
+
+  .modal-thumbs {
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .modal-thumbs img {
+    width: 64px;
+    height: 48px;
   }
 }
 </style>

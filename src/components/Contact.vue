@@ -16,109 +16,67 @@ const telegramLink = `https://t.me/transfer15reg`
         <p class="section-subtitle">Выберите удобный способ связи</p>
       </div>
 
-      <div class="contact-content">
-        <div class="contact-info">
-          <div class="info-card">
-            <div class="card-icon">📞</div>
-            <h3 class="card-title">Позвоните нам</h3>
+      <div class="contact-grid">
+        <!-- Телефон -->
+        <div class="contact-card phone-card">
+          <div class="card-icon">📞</div>
+          <div class="card-content">
+            <h3 class="card-title">Позвоните</h3>
             <a :href="`tel:${phoneClean}`" class="phone-number">{{ phone }}</a>
-            <p class="card-description">Ежедневно с 8:00 до 22:00</p>
-          </div>
-
-          <div class="contact-methods">
-            <a :href="whatsappLink" target="_blank" class="method-btn whatsapp">
-              <div class="method-icon">
-                <img :src="whatsappIcon" alt="WhatsApp" />
-              </div>
-              <div class="method-content">
-                <div class="method-name">WhatsApp</div>
-                <div class="method-description">Быстрые ответы</div>
-              </div>
-            </a>
-
-            <a :href="telegramLink" target="_blank" class="method-btn telegram" aria-label="Telegram">
-              <div class="method-icon">
-                <img :src="telegramIcon" alt="Telegram" />
-              </div>
-              <div class="method-content">
-                <div class="method-name">Telegram</div>
-                <div class="method-description">Удобный чат</div>
-              </div>
-            </a>
-          </div>
-
-          <div class="info-details">
-            <div class="detail-item">
-              <span class="detail-icon">📍</span>
-              <div>
-                <strong>Адрес:</strong><br>
-                г. Владикавказ, Республика Северная Осетия-Алания
-              </div>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">✉️</span>
-              <div>
-                <strong>Email:</strong> Transfer15rus@yandex.ru
-              </div>
-            </div>
+            <p class="card-description">8:00 - 22:00</p>
           </div>
         </div>
 
-      </div>
-    </div>
+        <!-- WhatsApp -->
+        <a :href="whatsappLink" target="_blank" class="contact-card messenger-card">
+          <div class="card-icon">
+            <img :src="whatsappIcon" alt="WhatsApp" />
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">WhatsApp</h3>
+            <p class="card-description">Быстрые ответы</p>
+          </div>
+        </a>
 
-    <div class="decorative-bg">
-      <div class="mountain mountain-1"></div>
-      <div class="mountain mountain-2"></div>
-      <div class="mountain mountain-3"></div>
+        <!-- Telegram -->
+        <a :href="telegramLink" target="_blank" class="contact-card messenger-card">
+          <div class="card-icon">
+            <img :src="telegramIcon" alt="Telegram" />
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Telegram</h3>
+            <p class="card-description">Удобный чат</p>
+          </div>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:Transfer15rus@yandex.ru" class="contact-card email-card">
+          <div class="card-icon">✉️</div>
+          <div class="card-content">
+            <h3 class="card-title">Email</h3>
+            <p class="card-description">Transfer15rus@yandex.ru</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="location-bar">
+        <span class="location-icon">📍</span>
+        <span>г. Владикавказ, Республика Северная Осетия-Алания</span>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
 .contact {
-  padding: 6rem 0;
+  padding: 4rem 0;
   background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
   position: relative;
   overflow: hidden;
 }
 
-.decorative-bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  pointer-events: none;
-}
-
-.mountain {
-  position: absolute;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  opacity: 0.1;
-}
-
-.mountain-1 {
-  left: 10%;
-  border-bottom: 200px solid white;
-}
-
-.mountain-2 {
-  left: 40%;
-  border-bottom: 150px solid white;
-}
-
-.mountain-3 {
-  right: 10%;
-  border-bottom: 180px solid white;
-}
-
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
@@ -127,183 +85,169 @@ const telegramLink = `https://t.me/transfer15reg`
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: white;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .section-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.contact-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  width: 100%;
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.contact-info {
+.contact-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 1rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  text-align: center;
-}
-
-.info-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.card-icon {
-  margin: 0 auto 1rem;
-  width: 88px;
-  height: 88px;
-  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  line-height: 1;
-  color: white;
 }
 
-.card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.phone-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 800;
-  color: white;
-  text-decoration: none;
-  margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.phone-number:hover {
-  transform: scale(1.05);
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.card-description {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-}
-
-.contact-methods {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.method-btn {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  text-decoration: none;
-  color: white;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.method-btn:hover {
+.contact-card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.method-icon {
+.card-icon {
   font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.method-icon img {
-  width: 42px;
-  height: 42px;
-  display: block;
+.card-icon img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.method-name {
-  font-weight: 700;
+.card-content {
+  text-align: center;
+}
+
+.card-title {
   font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
 }
 
-.method-description {
-  font-size: 0.875rem;
-  opacity: 0.9;
+.phone-number {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+  transition: all 0.3s ease;
 }
 
-.info-details {
+.phone-number:hover {
+  transform: scale(1.05);
+}
+
+.card-description {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.location-bar {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  text-align: center;
   border: 2px solid rgba(255, 255, 255, 0.2);
   color: white;
-}
-
-.detail-item {
+  font-size: 0.95rem;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
   align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.detail-item:last-child {
-  margin-bottom: 0;
-}
-
-.detail-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-@media (max-width: 968px) {
-  .contact-content {
-    flex-direction: column;
-  }
-
-  .contact-methods {
-    grid-template-columns: 1fr;
-  }
+.location-icon {
+  font-size: 1.2rem;
 }
 
 @media (max-width: 768px) {
   .contact {
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
 
   .section-title {
     font-size: 2rem;
   }
 
-  .contact-content {
-    flex-direction: column;
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .contact-card {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-icon img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card-title {
+    font-size: 1rem;
   }
 
   .phone-number {
-    font-size: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .card-description {
+    font-size: 0.75rem;
+  }
+
+  .location-bar {
+    padding: 0.875rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

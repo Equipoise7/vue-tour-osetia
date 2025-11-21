@@ -328,12 +328,16 @@ const scrollToSection = (sectionId) => {
     flex-direction: column;
     padding: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transform: translateY(-120%);
+    transform: translateY(-100%);
     transition: transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
   }
 
   .nav.open {
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
 
   .nav.open .nav-link {

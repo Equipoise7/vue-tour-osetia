@@ -57,6 +57,8 @@ const onVideoLoaded = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* Video Background Styles */

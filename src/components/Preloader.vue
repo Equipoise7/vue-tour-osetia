@@ -4,11 +4,10 @@ import { ref, onMounted } from 'vue'
 const isLoading = ref(true)
 
 onMounted(() => {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      isLoading.value = false
-    }, 500)
-  })
+  // Быстрая загрузка - 300ms вместо 500ms
+  setTimeout(() => {
+    isLoading.value = false
+  }, 300)
 })
 </script>
 

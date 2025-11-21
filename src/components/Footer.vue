@@ -35,22 +35,20 @@ const phoneClean = '79897413634'
         <div class="footer-section">
           <h4 class="footer-title">Наши услуги</h4>
           <ul class="footer-links">
+            <li><a href="#services">Трансфер и перевозки</a></li>
+            <li><a href="#services">Экскурсии по Осетии</a></li>
             <li><a href="#services">Горные туры</a></li>
-            <li><a href="#services">Трансфер межгород</a></li>
-            <li><a href="#gallery">Фототуры</a></li>
-            <li><a href="#services">Зимние туры</a></li>
-            <li><a href="#services">Культурные экскурсии</a></li>
+            <li><a href="#services">Индивидуальные программы</a></li>
           </ul>
         </div>
 
         <div class="footer-section">
           <h4 class="footer-title">Популярные маршруты</h4>
           <ul class="footer-links">
-            <li><a href="#gallery">Цейское ущелье</a></li>
-            <li><a href="#gallery">Кармадонское ущелье</a></li>
-            <li><a href="#gallery">Дигорское ущелье</a></li>
-            <li><a href="#gallery">Куртатинское ущелье</a></li>
-            <li><a href="#gallery">Даргавс</a></li>
+            <li><a href="#services">Золотое кольцо</a></li>
+            <li><a href="#services">Цейское ущелье</a></li>
+            <li><a href="#services">Куртатинское ущелье</a></li>
+            <li><a href="#services">Даргавское ущелье</a></li>
           </ul>
         </div>
 

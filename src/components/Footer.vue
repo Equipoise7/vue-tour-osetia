@@ -11,7 +11,7 @@ const phoneClean = '79897413634'
         <div class="footer-section">
           <div class="footer-logo">
             <span class="logo-icon">⛰️</span>
-            <span class="logo-text">Осетия Туры</span>
+            <span class="logo-text">Туры Осетии</span>
           </div>
           <p class="footer-description">
             Профессиональные туры и трансферы по горам Северной Осетии. 
@@ -64,7 +64,7 @@ const phoneClean = '79897413634'
 
       <div class="footer-bottom">
         <div class="copyright">
-          © {{ currentYear }} Осетия Туры. Все права защищены.
+          © {{ currentYear }} Туры Осетии. Все права защищены.
         </div>
         <div class="footer-note">
           Сделано с ❤️ для путешественников

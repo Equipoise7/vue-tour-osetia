@@ -160,7 +160,9 @@ watch(selectedService, (val) => {
 })
 
 onBeforeUnmount(() => {
-  unlockScroll()
+  if (selectedService.value) {
+    unlockScroll()
+  }
 })
 </script>
 

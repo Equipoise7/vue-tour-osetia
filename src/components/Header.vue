@@ -34,7 +34,7 @@ const scrollToSection = (sectionId) => {
           <div class="flag-stripe red"></div>
           <div class="flag-stripe yellow"></div>
         </div>
-        <span class="logo-text">Осетия Туры</span>
+        <span class="logo-text">Туры Осетии</span>
       </div>
       
       <button class="burger" @click="isMenuOpen = !isMenuOpen" :class="{ active: isMenuOpen }">

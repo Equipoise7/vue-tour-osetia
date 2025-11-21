@@ -17,7 +17,7 @@ onMounted(() => {
       <div class="preloader-content">
         <div class="logo-animation">
           <span class="mountain">⛰️</span>
-          <h1 class="brand">Осетия Туры</h1>
+          <h1 class="brand">Туры Осетии</h1>
         </div>
         <div class="loader">
           <div class="loader-bar"></div>

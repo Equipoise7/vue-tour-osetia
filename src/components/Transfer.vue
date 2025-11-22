@@ -191,7 +191,7 @@ onBeforeUnmount(() => {
     <div class="car-section">
       <div class="car-content">
         <div class="car-image">
-          <img src="/images/alphard.png" alt="Toyota Alphard" class="car-photo">
+          <img src="/images/alphard.png" alt="Toyota Alphard" class="car-photo" loading="lazy">
           <div class="car-overlay">
             <div class="car-label">Toyota Alphard</div>
             <div class="car-badge">Premium</div>
@@ -226,14 +226,12 @@ onBeforeUnmount(() => {
           <div class="modal-body">
             <div class="modal-gallery">
               <button v-if="selectedService.photos && selectedService.photos.length > 1" class="nav-arrow left" @click="prevPhoto">‹</button>
-              <div
+              <img
                 class="modal-main-image"
-                :style="{
-                  backgroundImage: `url(${selectedPhoto})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }"
-              ></div>
+                :src="selectedPhoto"
+                :alt="selectedService.title"
+                loading="lazy"
+              />
               <button v-if="selectedService.photos && selectedService.photos.length > 1" class="nav-arrow right" @click="nextPhoto">›</button>
             </div>
 
@@ -249,6 +247,7 @@ onBeforeUnmount(() => {
                   :class="{ active: idx === currentPhotoIndex }"
                   @click="goToPhoto(idx)"
                   alt="thumbnail"
+                  loading="lazy"
                 />
               </div>
               <a href="#contact" class="modal-cta-btn" @click="closeService">Заказать</a>
@@ -556,6 +555,8 @@ onBeforeUnmount(() => {
   justify-content: center;
   z-index: 9999;
   padding: 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
@@ -563,24 +564,34 @@ onBeforeUnmount(() => {
   max-width: 900px;
   width: 100%;
   animation: modalZoom 0.3s ease;
+  margin: auto;
 }
 
 .close-btn {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  background: none;
-  border: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .close-btn:hover {
-  transform: rotate(90deg);
-  color: #4299e1;
+  transform: rotate(90deg) scale(1.1);
+  background: rgba(66, 153, 225, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .modal-body {
@@ -600,9 +611,10 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 500px;
   border-radius: 20px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  display: block;
 }
 
 .nav-arrow {
@@ -787,6 +799,11 @@ onBeforeUnmount(() => {
 @media (max-width: 768px) {
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 1.75rem;
   }
 
   .car-section {
@@ -812,11 +829,20 @@ onBeforeUnmount(() => {
 
   .modal {
     padding: 1rem;
+    padding-top: 4rem;
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    margin-top: 0;
   }
 
   .close-btn {
-    top: -40px;
-    font-size: 2.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.75rem;
   }
 
   .modal-main-image {
@@ -850,6 +876,125 @@ onBeforeUnmount(() => {
   .modal-thumbs img {
     width: 64px;
     height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    gap: 1.25rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+
+  .service-features li {
+    font-size: 0.85rem;
+  }
+
+  .car-image {
+    height: 350px;
+  }
+
+  .info-title {
+    font-size: 1.35rem;
+  }
+
+  .info-description {
+    font-size: 0.9rem;
+  }
+
+  .car-features-list li {
+    font-size: 0.9rem;
+  }
+
+  .cta-btn {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+
+  .modal {
+    padding: 0.75rem;
+    padding-top: 3.5rem;
+  }
+
+  .close-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    max-width: 100%;
+  }
+
+  .modal-main-image {
+    height: 260px;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .modal-description {
+    font-size: 0.875rem;
+    max-height: 180px;
+    padding-bottom: 1rem;
+  }
+
+  .modal-cta-btn {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .service-card {
+    padding: 1.25rem;
+  }
+
+  .service-icon {
+    font-size: 2.25rem;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+  }
+
+  .car-image {
+    height: 320px;
+  }
+
+  .info-title {
+    font-size: 1.2rem;
+  }
+
+  .modal-main-image {
+    height: 240px;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+  }
+
+  .modal-description {
+    font-size: 0.825rem;
+    max-height: 160px;
   }
 }
 </style>

@@ -3,9 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛰️</text></svg>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- Viewport для адаптивности на всех устройствах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+    
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=yes" />
+    
+    <!-- Android Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#2c5282" />
+    
     <meta name="description" content="Туры и экскурсии по горам Северной Осетии. Трансфер межгород на комфортном Toyota Alphard. Цейское, Кармадонское, Дигорское ущелья." />
-    <meta name="keywords" content="туры осетия, экскурсии владикавказ, горы северная осетия, трансфер осетия, цей, кармадон, дигория" />
+    <meta name="keywords" content="туры осетия, экскурсии владикавказ, горы северная осетия, трансфер осетия, цей, кармадон, дигория, даргавс, город мертвых, мидаграбинские водопады, уастырджи, фиагдон, алания" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tours-ossetia.ru/" />
+    <meta property="og:title" content="Туры Осетии - Горные туры и трансфер по Северной Осетии" />
+    <meta property="og:description" content="Туры и экскурсии по горам Северной Осетии. Трансфер межгород на комфортном Toyota Alphard. Цейское, Кармадонское, Дигорское ущелья." />
+    <meta property="og:image" content="https://tours-ossetia.ru/images/hero1.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://tours-ossetia.ru/" />
+    <meta property="twitter:title" content="Туры Осетии - Горные туры и трансфер по Северной Осетии" />
+    <meta property="twitter:description" content="Туры и экскурсии по горам Северной Осетии. Трансфер межгород на комфортном Toyota Alphard. Цейское, Кармадонское, Дигорское ущелья." />
+    <meta property="twitter:image" content="https://tours-ossetia.ru/images/hero1.jpg" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://tours-ossetia.ru/" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Туры Осетии",
+      "image": "https://tours-ossetia.ru/images/hero1.jpg",
+      "description": "Туры и экскурсии по горам Северной Осетии. Трансфер межгород на комфортном Toyota Alphard.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Владикавказ",
+        "addressRegion": "Северная Осетия - Алания",
+        "addressCountry": "RU"
+      },
+      "url": "https://tours-ossetia.ru/",
+      "priceRange": "$$"
+    }
+    </script>
+
     <link rel="preload" as="image" href="/images/hero1.jpg" fetchpriority="high" />
     <title>Туры Осетии - Горные туры и трансфер по Северной Осетии</title>
   </head>

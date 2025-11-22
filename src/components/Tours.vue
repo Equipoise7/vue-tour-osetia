@@ -289,7 +289,9 @@ onBeforeUnmount(() => {
             loop
             muted
             playsinline
-            preload="metadata"
+            preload="none"
+            loading="lazy"
+            :poster="route.image"
           ></video>
           <div 
             v-else
@@ -316,14 +318,12 @@ onBeforeUnmount(() => {
           <button class="close-btn" @click="closeRoute">&times;</button>
           <div class="modal-body">
             <div class="modal-gallery">
-              <div
+              <img
                 class="modal-main-image"
-                :style="{
-                  backgroundImage: `url(${selectedPhoto})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }"
-              ></div>
+                :src="selectedPhoto"
+                :alt="selectedRoute.title"
+                loading="lazy"
+              />
             </div>
 
             <div class="modal-info">
@@ -463,6 +463,8 @@ onBeforeUnmount(() => {
   justify-content: center;
   z-index: 9999;
   padding: 2rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
@@ -470,24 +472,34 @@ onBeforeUnmount(() => {
   max-width: 900px;
   width: 100%;
   animation: modalZoom 0.3s ease;
+  margin: auto;
 }
 
 .close-btn {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  background: none;
-  border: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .close-btn:hover {
-  transform: rotate(90deg);
-  color: #4299e1;
+  transform: rotate(90deg) scale(1.1);
+  background: rgba(66, 153, 225, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .modal-body {
@@ -507,9 +519,10 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 500px;
   border-radius: 20px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  display: block;
 }
 
 .nav-arrow {
@@ -632,6 +645,7 @@ onBeforeUnmount(() => {
 @media (max-width: 968px) {
   .routes-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   .modal-body {
@@ -662,19 +676,42 @@ onBeforeUnmount(() => {
 
   .routes-subtitle {
     font-size: 1rem;
+    margin-bottom: 2rem;
   }
 
   .routes-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .route-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .route-title {
+    font-size: 1.35rem;
+  }
+
+  .route-description {
+    font-size: 0.95rem;
   }
 
   .modal {
     padding: 1rem;
+    padding-top: 4rem;
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    margin-top: 0;
   }
 
   .close-btn {
-    top: -40px;
-    font-size: 2.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.75rem;
   }
 
   .modal-main-image {
@@ -707,6 +744,99 @@ onBeforeUnmount(() => {
   .modal-thumbs img {
     width: 64px;
     height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .routes-title {
+    font-size: 1.35rem;
+  }
+
+  .routes-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .routes-grid {
+    gap: 1rem;
+  }
+
+  .route-title {
+    font-size: 1.2rem;
+  }
+
+  .route-description {
+    font-size: 0.9rem;
+  }
+
+  .view-icon {
+    font-size: 1.75rem;
+  }
+
+  .modal {
+    padding: 0.75rem;
+    padding-top: 3.5rem;
+  }
+
+  .close-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    max-width: 100%;
+  }
+
+  .modal-main-image {
+    height: 260px;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .modal-description {
+    font-size: 0.875rem;
+  }
+
+  .modal-description.detailed {
+    max-height: 240px;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .routes-title {
+    font-size: 1.2rem;
+  }
+
+  .routes-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .route-title {
+    font-size: 1.1rem;
+  }
+
+  .route-description {
+    font-size: 0.85rem;
+  }
+
+  .modal-main-image {
+    height: 240px;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+  }
+
+  .modal-description.detailed {
+    font-size: 0.825rem;
+    max-height: 200px;
   }
 }
 </style>

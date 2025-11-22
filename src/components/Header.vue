@@ -314,24 +314,48 @@ const scrollToSection = (sectionId) => {
 }
 
 @media (max-width: 768px) {
+  .header {
+    height: 60px;
+  }
+
+  .container {
+    padding: 0.75rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .flag-icon {
+    width: 28px;
+    height: 21px;
+  }
+
   .burger {
     display: flex;
+    z-index: 1001;
+  }
+
+  .burger span {
+    width: 22px;
   }
 
   .nav {
     position: fixed;
-    top: 70px;
+    top: 60px;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.5rem 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transform: translateY(-100%);
     transition: transform 0.3s ease;
     opacity: 0;
     visibility: hidden;
+    gap: 1rem;
   }
 
   .nav.open {
@@ -343,11 +367,67 @@ const scrollToSection = (sectionId) => {
   .nav.open .nav-link {
     color: #2d3748;
     text-shadow: none;
+    font-size: 1.1rem;
+    padding: 0.5rem;
   }
   
   .nav.open .contact-btn {
     background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
     border: none;
+    padding: 0.875rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 56px;
+  }
+
+  .container {
+    padding: 0.5rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    gap: 0.4rem;
+  }
+
+  .flag-icon {
+    width: 24px;
+    height: 18px;
+  }
+
+  .burger span {
+    width: 20px;
+    height: 2.5px;
+    gap: 4px;
+  }
+
+  .nav {
+    top: 56px;
+    padding: 1.25rem 1rem;
+  }
+
+  .nav.open .nav-link {
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+
+  .nav.open .contact-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 1rem;
+  }
+
+  .flag-icon {
+    width: 22px;
+    height: 16px;
   }
 }
 </style>

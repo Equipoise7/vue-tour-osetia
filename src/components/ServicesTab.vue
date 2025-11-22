@@ -181,6 +181,10 @@ const switchTab = (tabId) => {
     padding: 4rem 0;
   }
 
+  .container {
+    padding: 0 1.5rem;
+  }
+
   .section-title {
     font-size: 2rem;
   }
@@ -207,6 +211,69 @@ const switchTab = (tabId) => {
 
   .tab-name {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-tab {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .tabs {
+    gap: 0.875rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tabs::after {
+    bottom: -1.75rem;
+    font-size: 0.8rem;
+  }
+
+  .tab-button {
+    padding: 1.1rem 1.5rem;
+    gap: 0.6rem;
+  }
+
+  .tab-icon {
+    font-size: 1.35rem;
+  }
+
+  .tab-name {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .tab-button {
+    padding: 1rem 1.25rem;
+  }
+
+  .tab-name {
+    font-size: 0.9rem;
   }
 }
 </style>

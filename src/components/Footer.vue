@@ -219,17 +219,140 @@ const phoneClean = '79897413634'
     padding: 3rem 0 1.5rem;
   }
 
+  .container {
+    padding: 0 1.5rem;
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-logo {
+    font-size: 1.35rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .logo-icon {
+    font-size: 1.75rem;
+  }
+
+  .footer-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-title {
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.625rem;
+  }
+
+  .footer-contacts li {
+    margin-bottom: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-icon {
+    font-size: 1.1rem;
   }
 
   .footer-bottom {
     flex-direction: column;
     text-align: center;
+    padding-top: 1.75rem;
+    gap: 0.75rem;
   }
 
-  .social-links {
-    justify-content: center;
+  .copyright,
+  .footer-note {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2.5rem 0 1.25rem;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .footer-content {
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo {
+    font-size: 1.25rem;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .footer-description {
+    font-size: 0.9rem;
+  }
+
+  .footer-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a,
+  .footer-contacts li {
+    font-size: 0.9rem;
+  }
+
+  .footer-contacts li {
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-icon {
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    padding-top: 1.5rem;
+  }
+
+  .copyright,
+  .footer-note {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer-logo {
+    font-size: 1.15rem;
+  }
+
+  .footer-description {
+    font-size: 0.85rem;
+  }
+
+  .footer-title {
+    font-size: 1rem;
+  }
+
+  .footer-links a,
+  .footer-contacts li {
+    font-size: 0.85rem;
+  }
+
+  .copyright,
+  .footer-note {
+    font-size: 0.8rem;
   }
 }
 </style>

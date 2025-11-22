@@ -200,6 +200,10 @@ const telegramLink = `https://t.me/transfer15reg`
     padding: 3rem 0;
   }
 
+  .container {
+    padding: 0 1.5rem;
+  }
+
   .section-title {
     font-size: 2rem;
   }
@@ -246,8 +250,106 @@ const telegramLink = `https://t.me/transfer15reg`
 }
 
 @media (max-width: 480px) {
+  .contact {
+    padding: 2.5rem 0;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .card-icon {
+    font-size: 2.25rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .card-icon img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .phone-number {
+    font-size: 1.05rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+  }
+
+  .location-bar {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .location-icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .contact-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .card-icon img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .phone-number {
+    font-size: 1rem;
+  }
+
+  .card-description {
+    font-size: 0.8rem;
+  }
+
+  .location-bar {
+    padding: 0.875rem 1rem;
+    font-size: 0.85rem;
   }
 }
 </style>

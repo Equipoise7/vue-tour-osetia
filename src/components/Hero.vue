@@ -186,12 +186,18 @@ const onVideoLoaded = () => {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 500px;
+  }
+
   .hero-title {
     font-size: 2.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .hero-subtitle {
     font-size: 1.2rem;
+    margin-bottom: 2rem;
   }
 
   .btn {
@@ -204,10 +210,64 @@ const onVideoLoaded = () => {
     gap: 1rem;
   }
   
-  /* On mobile, reduce video quality impact */
   .video-background video {
     min-width: 100%;
     width: 100%;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 450px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.75rem;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-buttons {
+    gap: 0.875rem;
+    align-items: center;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    min-height: 400px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
 </style>
